@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,6 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+	<!-- Carpetas y archivos adicionales que se deben de publicar cuando es modo Debug o Release. -->
+	<ItemGroup>
+		<None Update="AppSettings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="dbup-core" Version="4.6.3" />
@@ -22,5 +27,18 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
   </ItemGroup>
+
+	<!-- Scripts SQL. -->
+	<ItemGroup>
+		<EmbeddedResource Include="SQLScripts\BeforeDeployment\*.sql" />
+		<EmbeddedResource Include="SQLScripts\Deployment\*.sql" />
+		<EmbeddedResource Include="SQLScripts\PostDeployment\*.sql" />
+	</ItemGroup>
+	
+	<!--<ItemGroup>
+	  <Folder Include="SQLScripts\BeforeDeployment\" />
+	  <Folder Include="SQLScripts\Deployment\" />
+	  <Folder Include="SQLScripts\PostDeployment\" />
+	</ItemGroup>-->
 
 </Project>
